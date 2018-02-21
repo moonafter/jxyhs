@@ -6,7 +6,7 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="alternate" type="application/atom+xml" href="atom.xml" title="Atom feed">
-    <title>test - 进贤养护所桥梁手册</title>
+    <title>桥梁名称 - 进贤养护所桥梁手册</title>
     <meta name="keywords" content="养护;桥梁"/>
     <meta name="description" content=""/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -16,19 +16,29 @@
     <div id="container">
       
 <div id="header">
-  <div class="post-nav"><a href="/">Home</a>&nbsp;&#187;&nbsp;<a href="/#lw">lw</a>&nbsp;&#187;&nbsp;test
+  <div class="post-nav"><a href="/">Home</a>&nbsp;&#187;&nbsp;<a href="/#lw">lw</a>&nbsp;&#187;&nbsp;桥梁名称
     <span class="updated">Page Updated&nbsp;
       2018-02-21 16:01
     </span></div>
 </div>
 <div class="clearfix"></div>
 
-<div class="page_title">test</div>
+<div class="page_title">桥梁名称</div>
 
-  <h1>桥梁基本状况卡片</h1>
+  <div>
+  <div id="text" style="float: left; width: 60%;">
+    <h1>中心桩号: K100+200</h1>
+    <h1>桥梁编号：XXXXXXXXXXX</h1>
+  </div>
+  <div id="qr" style="float: right; width: 40%;">
+    <img src="//oss.chengchangqin.com/jxyhs/test.png" alt="二维码" height="200" width="200" align="right"><br>
+  </div>
+</div>
 
-<p><img src="//oss.chengchangqin.com/jxyhs/test.png" alt="二维码"/><br />
-<canvas id="the-canvas"></canvas></p>
+<div>
+  <canvas id="the-canvas"></canvas>
+</div>
+
 <script src="/static/js/pdf.min.js"></script>
 
 <script type="text/javascript">
@@ -38,7 +48,7 @@ var loadingTask = PDFJS.getDocument(url);
 loadingTask.promise.then(function(pdf) {
   var pageNumber = 1;
   pdf.getPage(pageNumber).then(function(page) {    
-    var scale = 1.5;
+    var scale = 1;
     var viewport = page.getViewport(scale);
     var canvas = document.getElementById('the-canvas');
     var context = canvas.getContext('2d');
@@ -57,7 +67,7 @@ loadingTask.promise.then(function(pdf) {
       <span>
         <p>Copyright © 2018 程昌勤.
         Powered by <a href="http://simiki.org/" target="_blank">Simiki</a>.</p>
-        <p>Site Generated 2018-02-21 21:59:15</p>
+        <p>Site Generated 2018-02-21 22:56:47</p>
       </span>
     </div>
 
