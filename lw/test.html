@@ -46,20 +46,22 @@ var url = '//oss.chengchangqin.com/jxyhs/%E6%A1%A5%E6%A2%81%E5%9F%BA%E6%9C%AC%E7
 PDFJS.workerSrc = '/static/js/pdf.worker.min.js'
 var loadingTask = PDFJS.getDocument(url);
 loadingTask.promise.then(function(pdf) {
-  var pageNumber = 1;
-  pdf.getPage(pageNumber).then(function(page) {    
-    var scale = 1.2;
-    var viewport = page.getViewport(scale);
-    var canvas = document.getElementById('the-canvas');
-    var context = canvas.getContext('2d');
-    canvas.height = viewport.height;
-    canvas.width = viewport.width;
-    var renderContext = {
-      canvasContext: context,
-      viewport: viewport
-    };
-    page.render(renderContext);
-  });
+  for (var i = 0; i < pdf.numPages; i++) {
+    pdf.getPage(i).then(function(page) {    
+      var scale = 1.2;
+      var viewport = page.getViewport(scale);
+      var canvas = document.getElementById('the-canvas');
+      var context = canvas.getContext('2d');
+      canvas.height = viewport.height;
+      canvas.width = viewport.width;
+      document.body.appendChild(canvas);
+      var renderContext = {
+        canvasContext: context,
+        viewport: viewport
+      };
+      page.render(renderContext);
+    });
+  };
 });
 </script>
     </div>
@@ -67,7 +69,7 @@ loadingTask.promise.then(function(pdf) {
       <span>
         <p>Copyright © 2018 程昌勤.
         Powered by <a href="http://simiki.org/" target="_blank">Simiki</a>.</p>
-        <p>Site Generated 2018-02-21 23:05:29</p>
+        <p>Site Generated 2018-02-21 23:48:15</p>
       </span>
     </div>
 
