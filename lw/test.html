@@ -46,7 +46,7 @@ loadingTask.promise.then(function(pdf) {
     pdf.getPage(i).then(function(page) {    
       var id = "canvas"+i;
       var html = "<canvas id='"+id+"'></canvas>";
-      $("#container").append(html);
+      document.body.firstElementChild.appendChild(html);
       var scale = 1.2;
       var viewport = page.getViewport(scale);
       var canvas = document.getElementById(id);
@@ -67,7 +67,7 @@ loadingTask.promise.then(function(pdf) {
       <span>
         <p>Copyright © 2018 程昌勤.
         Powered by <a href="http://simiki.org/" target="_blank">Simiki</a>.</p>
-        <p>Site Generated 2018-02-22 00:12:51</p>
+        <p>Site Generated 2018-02-22 00:22:00</p>
       </span>
     </div>
 
