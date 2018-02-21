@@ -35,10 +35,6 @@
   </div>
 </div>
 
-<div>
-  <canvas id="the-canvas"></canvas>
-</div>
-
 <script src="/static/js/pdf.min.js"></script>
 
 <script type="text/javascript">
@@ -46,15 +42,17 @@ var url = '//oss.chengchangqin.com/jxyhs/%E6%A1%A5%E6%A2%81%E5%9F%BA%E6%9C%AC%E7
 PDFJS.workerSrc = '/static/js/pdf.worker.min.js'
 var loadingTask = PDFJS.getDocument(url);
 loadingTask.promise.then(function(pdf) {
-  for (var i = 0; i < pdf.numPages; i++) {
+  for (var i = 1; i <= pdf.numPages; i++) {
     pdf.getPage(i).then(function(page) {    
+      var id = "canvas"+i;
+      var html = "<canvas id='"+id+"'></canvas>";
+      $("#container").append(html);
       var scale = 1.2;
       var viewport = page.getViewport(scale);
-      var canvas = document.getElementById('the-canvas');
+      var canvas = document.getElementById(id);
       var context = canvas.getContext('2d');
       canvas.height = viewport.height;
       canvas.width = viewport.width;
-      document.body.appendChild(canvas);
       var renderContext = {
         canvasContext: context,
         viewport: viewport
@@ -69,7 +67,7 @@ loadingTask.promise.then(function(pdf) {
       <span>
         <p>Copyright © 2018 程昌勤.
         Powered by <a href="http://simiki.org/" target="_blank">Simiki</a>.</p>
-        <p>Site Generated 2018-02-21 23:48:15</p>
+        <p>Site Generated 2018-02-22 00:12:51</p>
       </span>
     </div>
 
