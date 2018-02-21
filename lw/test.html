@@ -35,6 +35,11 @@
   </div>
 </div>
 
+<div>
+<canvas id="canvas1"></canvas>
+<canvas id="canvas2"></canvas>
+</div>
+
 <script src="/static/js/pdf.min.js"></script>
 
 <script type="text/javascript">
@@ -45,8 +50,6 @@ loadingTask.promise.then(function(pdf) {
   for (var i = 1; i <= pdf.numPages; i++) {
     pdf.getPage(i).then(function(page) {    
       var id = "canvas"+i;
-      var html = "<canvas id='"+id+"'></canvas>";
-      document.body.firstElementChild.append(html);
       var scale = 1.2;
       var viewport = page.getViewport(scale);
       var canvas = document.getElementById(id);
@@ -67,7 +70,7 @@ loadingTask.promise.then(function(pdf) {
       <span>
         <p>Copyright © 2018 程昌勤.
         Powered by <a href="http://simiki.org/" target="_blank">Simiki</a>.</p>
-        <p>Site Generated 2018-02-22 00:24:51</p>
+        <p>Site Generated 2018-02-22 00:35:56</p>
       </span>
     </div>
 
