@@ -26,29 +26,73 @@
 <div class="page_title">桥梁名称</div>
 
   <div>
-  <div id="text" style="float: left; width: 60%;">
-    <h1>中心桩号: K100+200</h1>
-    <h1>桥梁编号：XXXXXXXXXXX</h1>
-  </div>
-  <div id="qr" style="float: right; width: 40%;">
-    <img src="//oss.chengchangqin.com/jxyhs/test.png" alt="二维码" height="200" width="200" align="right"><br>
-  </div>
+    <div id="text" style="float: left; width: 60%;">
+        <h1>中心桩号: K100+200</h1>
+        <h1>桥梁编号：XXXXXXXXXXX</h1>
+    </div>
+    <div id="qr" style="float: right; width: 40%;">
+        <img src="//oss.chengchangqin.com/jxyhs/test.png" alt="二维码" height="200" width="200" align="right"><br>
+    </div>
 </div>
 
-<div>
-<canvas id="canvas1"></canvas>
-<canvas id="canvas2"></canvas>
+<div class="wrapper" id="pdf-container">
 </div>
 
 <script src="/static/js/pdf.min.js"></script>
 
-<script src="/static/js/util.js"></script>
+<script>
+    window.onload = function () {
+        function createPdfContainer(id,className) {
+            var pdfContainer = document.getElementById('pdf-container');
+            var canvasNew =document.createElement('canvas');
+            canvasNew.id = id;
+            canvasNew.className = className;
+            pdfContainer.appendChild(canvasNew);
+        };
+        function renderPDF(pdf,i,id) {
+            pdf.getPage(i).then(function(page) {
+                var scale = 1.2;
+                var viewport = page.getViewport(scale);
+                var canvas = document.getElementById(id);
+                var context = canvas.getContext('2d');
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+                var renderContext = {
+                    canvasContext: context,
+                    viewport: viewport
+                };
+                page.render(renderContext);
+            });
+        };
+        function createSeriesCanvas(num,template) {
+            var id = '';
+            for(var j = 1; j <= num; j++){
+                id = template + j;
+                createPdfContainer(id,'pdfClass');
+            }
+        }
+        function loadPDF(fileURL) {
+            PDFJS.getDocument(fileURL).then(function(pdf) {
+                var id = '';
+                var idTemplate = 'cw-pdf-';
+                var pageNum = pdf.numPages;
+                createSeriesCanvas(pageNum,idTemplate);
+                for (var i = 1; i <= pageNum; i++) {
+                    id = idTemplate + i;
+                    renderPDF(pdf,i,id);
+                }
+
+            });
+        }
+        loadPDF('//oss.chengchangqin.com/jxyhs/%E6%A1%A5%E6%A2%81%E5%9F%BA%E6%9C%AC%E7%8A%B6%E5%86%B5%E5%8D%A1%E7%89%87.pdf');
+    };
+</script>
     </div>
     <div id="footer">
       <span>
         <p>Copyright © 2018 程昌勤.
         Powered by <a href="http://simiki.org/" target="_blank">Simiki</a>.</p>
-        <p>Site Generated 2018-02-22 13:37:58</p>
+        <p>Site Generated 2018-02-22 14:20:54</p>
       </span>
     </div>
 
